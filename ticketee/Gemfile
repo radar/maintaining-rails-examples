@@ -6,6 +6,7 @@ ruby '2.5.0'
 gem 'pg'
 gem 'rom-rails'
 gem 'rom-sql'
+gem 'rom-mapper', git: 'git://github.com/radar/rom', branch: 'build-once'
 gem 'dotenv-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
