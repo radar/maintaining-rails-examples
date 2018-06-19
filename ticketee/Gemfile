@@ -8,6 +8,8 @@ gem 'rom-rails'
 gem 'rom-sql'
 gem 'rom-mapper', git: 'git://github.com/radar/rom', branch: 'build-once'
 gem 'dotenv-rails'
+gem 'dry-validation', '~> 0.12.0'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
