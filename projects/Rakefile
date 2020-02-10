@@ -4,6 +4,7 @@ require_relative 'lib/projects'
 
 namespace :db do
   task :setup do
-    ROM::SQL::RakeSupport.env = Projects::DB
+    Projects::Application.start(:persistence)
+    ROM::SQL::RakeSupport.env = ROM.container(:sql,Projects::Application["db.connection"])
   end
 end

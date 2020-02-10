@@ -1,13 +1,19 @@
-require 'rom'
-require 'rom-sql'
+require 'bundler'
+Bundler.setup
 
-require_relative 'projects/repositories/projects'
-require_relative 'projects/project'
+require 'dry/system/container'
 
 module Projects
-  DB = ROM.container(:sql, 'postgres://localhost/projects_dev') do |config|
-    config.gateways[:default].use_logger(Logger.new($stdout))
+  class Application < Dry::System::Container
+    configure do |config|
+      config.root = File.expand_path('..', __dir__)
+      config.default_namespace = 'projects'
 
-    config.auto_registration('./lib/projects')
+      config.auto_register = 'lib'
+    end
+
+    load_paths!('lib')
   end
+
+  Import = Dry::AutoInject(Application)
 end
