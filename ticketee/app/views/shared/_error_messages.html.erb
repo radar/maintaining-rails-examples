@@ -1,0 +1,15 @@
+<% if errors.present? %>
+  <div class="validation-errors">
+    <h3>
+      There were errors that prevented this form from being saved:
+    </h3>
+
+    <ul>
+      <% errors.to_h.map do |key, messages| %>
+        <% messages.each do |error| %>
+          <li><%= key.to_s.capitalize %> <%= error %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

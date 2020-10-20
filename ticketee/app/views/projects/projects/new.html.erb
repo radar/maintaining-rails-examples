@@ -1,10 +1,12 @@
 <h2 class='text-4xl my-4'>New Project</h2>
 
 <%= form_with(model: @project, local: true, scope: :project) do |form| %>
+  <%= render "shared/error_messages", errors: @errors %>
+
   <p>
     <%= form.label :name, class: "label" %>
-    <%= form.text_field :name, class: "text mb-2" %>
+    <%= form.text_field :name, class: "text" %>
   </p>
 
-  <%= form.submit class: "btn btn-blue" %>
+  <%= form.submit class: "mt-4 btn btn-blue" %>
 <% end %>

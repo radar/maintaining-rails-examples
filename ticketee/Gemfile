@@ -54,4 +54,5 @@ gem 'rom-sql', '3.2.0'
 
 gem 'pg'
 
+gem 'pry-rails'
 gem 'dotenv-rails'
