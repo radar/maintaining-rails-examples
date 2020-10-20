@@ -1,0 +1,10 @@
+<h2 class='text-4xl my-4'>New Project</h2>
+
+<%= form_with(model: @project, local: true, scope: :project) do |form| %>
+  <p>
+    <%= form.label :name, class: "label" %>
+    <%= form.text_field :name, class: "text mb-2" %>
+  </p>
+
+  <%= form.submit class: "btn btn-blue" %>
+<% end %>
