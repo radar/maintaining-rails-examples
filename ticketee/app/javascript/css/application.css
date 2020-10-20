@@ -1,0 +1,57 @@
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+a {
+  @apply underline text-blue-500;
+}
+
+.flash {
+  @apply p-3 border-b-4;
+}
+
+.flash-notice {
+  @apply bg-green-500 text-white border-green-600;
+}
+
+.flash-alert {
+  @apply bg-red-500 text-red-900 border-red-600;
+}
+
+.btn {
+  @apply font-bold py-2 px-4 rounded inline-block no-underline;
+}
+
+.btn-blue {
+  @apply bg-blue-500 text-white;
+}
+
+.btn-blue:hover {
+  @apply bg-blue-700;
+}
+
+.label {
+  @apply block text-gray-700 text-sm font-bold mb-2;
+}
+
+input.text {
+  @apply shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+}
+
+input.text:focus {
+  @apply outline-none shadow-outline;
+}
+
+.validation-errors {
+  @apply bg-red-200 p-3 mb-4;
+}
+
+.validation-errors h3 {
+  @apply text-2xl mb-4;
+}
+
+.validation-errors ul {
+  @apply list-inside list-disc;
+}
