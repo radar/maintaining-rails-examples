@@ -1,5 +1,8 @@
 module Projects
   class ProjectsController < ApplicationController
+    include Dry::Monads[:result]
+    include Ticketee::Deps[repo: :project_repo]
+
     def index
       @projects = repo.all
     end
@@ -13,16 +16,17 @@ module Projects
     end
 
     def create
-      validation = ProjectContract.new.call(project_params)
-      if validation.success?
-        repo.create(project_params)
-        flash[:notice] = "Project has been created."
-        redirect_to action: :index
-      else
-        @project = Projects::Project.new(project_params)
-        @errors = validation.errors
-        flash.now[:alert] = "Project could not be created."
-        render :new
+      create_project = Projects::Create.new
+      case create_project.(project_params)
+        in Success(project)
+          flash[:notice] = "Project has been created."
+          redirect_to project
+
+        in Failure(result)
+          @project = Projects::Project.new(project_params)
+          @errors = result.errors
+          flash[:alert] = "Project could not be created."
+          render :new
       end
     end
 
@@ -30,10 +34,6 @@ module Projects
 
     def project_params
       params.require(:project).permit(:name).to_h.symbolize_keys
-    end
-
-    def repo
-      ProjectRepository.new(rom)
     end
   end
 end
