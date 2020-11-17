@@ -1,7 +1,7 @@
 module Projects
   class ProjectsController < ApplicationController
     include Dry::Monads[:result]
-    include Ticketee::Deps[repo: :project_repo]
+    include Ticketee::Deps[create_project: "projects.create", repo: :project_repo]
 
     def index
       @projects = repo.all
@@ -16,7 +16,6 @@ module Projects
     end
 
     def create
-      create_project = Projects::Create.new
       case create_project.(project_params)
         in Success(project)
           flash[:notice] = "Project has been created."
